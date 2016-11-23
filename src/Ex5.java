@@ -5,7 +5,8 @@ public class Ex5 {
     public static void main(String[] args) {
         int n = 7, m = 9;
         int[][] arr = new int[n][m];
-        System.out.println("Array_1: ");
+
+        System.out.println("Matrix: ");
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 arr[i][j] = (int)(Math.random()*(n+m));
@@ -13,22 +14,21 @@ public class Ex5 {
             }
             System.out.println();
         }
-        System.out.println("\nArray_2: ");
-        createArray2(arr, n, m);
+
+        int[] sumByEachRow = getSumByEachRow(arr);
+        for (int i = 0; i < sumByEachRow.length; i++) {
+            System.out.printf("Sum of %d row: %d\n", i+1, sumByEachRow[i]);
+        }
     }
 
-    public static void createArray2(int[][] arr1, int k, int l){
-        int[] arr2 = new int[k];
-        int s;
-        for (int i = 0; i < k; i++) {
-            s=0;
-            for (int j = 0; j < l; j++) {
-                s += arr1[i][j];
+    private static int[] getSumByEachRow(int[][] matrix){
+        int[] arr = new int[matrix.length];
+        for (int i = 0; i < matrix.length; i++) {
+            arr[i] = 0;
+            for (int j = 0; j < matrix[i].length; j++) {
+                arr[i] += matrix[i][j];
             }
-            arr2[i] = s;
         }
-        for (int i = 0; i < k; i++) {
-            System.out.print(arr2[i] + "\t");
-        }
+        return arr;
     }
 }
